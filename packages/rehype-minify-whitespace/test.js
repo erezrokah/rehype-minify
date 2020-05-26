@@ -100,5 +100,20 @@ test('rehype-minify-whitespace', function(t) {
     ])
   )
 
+  t.deepEqual(
+    rehype()
+      .use(min)
+      .runSync(
+        h('head', [
+          h('strong', ['Bold Text']),
+          h('span', [h('span', [' ']), 'regular text'])
+        ])
+      ),
+    h('head', [
+      h('strong', ['Bold Text']),
+      h('span', [h('span', [' ']), 'regular text'])
+    ])
+  )
+
   t.end()
 })
